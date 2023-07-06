@@ -102,27 +102,47 @@ class Trofeo(pygame.sprite.Sprite):
         super().__init__()
         self.imagen = pygame.image.load("src/texturas/final/0.png")
         self.rect = self.imagen.get_rect()
-        self.mask = pygame.mask.from_surface(self.imagen)
         self.player = personaje
         self.rect.x = x
         self.rect.y = y
 
     def update(self):
-        if self.rect.colliderect(self.player.rect) and self.player.rect.bottom < self.rect.bottom:
+        if self.rect.colliderect(self.player.rect):
             if self.player.cantidad_enemigos == 0:
                 self.player.gano = True
                 sound_victoria.play()
-           
-        elif self.rect.colliderect(self.player.rect):
-            if self.rect.left > self.player.rect.left or self.rect.right < self.player.rect.right:
-                if self.player.cantidad_enemigos == 0:
-                    self.player.gano = True
-                    sound_victoria.play()
-
 
     def draw(self):
         self.update()
         PANTALLA.blit(self.imagen, (self.rect.x, self.rect.y))
+
+class Moneda(pygame.sprite.Sprite):
+    def __init__(self, x, y, personaje):
+        super().__init__()
+        self.moneda = cargar_lista_imagenes("src/texturas/moneda", 4)
+        self.imagen = self.moneda[0]
+        self.rect = self.imagen.get_rect()
+        self.player = personaje
+        self.rect.x = x
+        self.rect.y = y
+        self.contador_sprite = 0
+        self.estado = True
+
+    def update(self):
+        if self.rect.colliderect(self.player.rect):# and self.player.rect.bottom < self.rect.bottom:
+            self.player.disparar = True
+            self.estado = False
+            sound_matar.play()
+
+    def draw(self):
+        if self.estado:
+            self.update()
+            self.contador_sprite += 1
+            if (self.contador_sprite == 4):
+                self.contador_sprite = 0
+            PANTALLA.blit(self.moneda[self.contador_sprite], (self.rect.x, self.rect.y))
+        elif not(self.player.disparar):
+            self.estado = True
 
 
     

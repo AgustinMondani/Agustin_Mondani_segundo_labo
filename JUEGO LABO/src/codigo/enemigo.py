@@ -20,8 +20,8 @@ class Enemy(pygame.sprite.Sprite):
     def update(self):
         self.rect.x += self.direction * 5
 
-        for obstacle in self.colisiones:
-            if self.rect.colliderect(obstacle.rect):
+        for obstaculo in self.colisiones:
+            if self.rect.colliderect(obstaculo.rect):
                 self.direction *= -1  
                 
         if self.rect.colliderect(self.player.rect) and self.player.rect.bottom < self.rect.bottom:

@@ -86,21 +86,26 @@ while ejecutar:
                     player.hit = not(player.hit)
                 if event.key == pygame.K_ESCAPE:
                     menu_estado = "menu"
+        
+        if player.vidas == 0:
+            resetear_nivel(player, enemigos1)
+            resetear_nivel(player, enemigos2)
+            resetear_nivel(player, enemigos3)
 
         if nivel_actual == 1:
-            niveles(player, bloques1, enemigos1, trampas1, fondo1)
+            niveles(player, bloques1, enemigos1, trampas1, fondo1, trofeo1)
             if player.gano:
                 resetear_nivel(player, enemigos1)
                 nivel_actual += 1
                 player = player2
         if nivel_actual == 2:
-            niveles(player, bloques2, enemigos2, trampas2, fondo2)
+            niveles(player, bloques2, enemigos2, trampas2,fondo2, trofeo2)
             if player.gano:
                 resetear_nivel(player, enemigos2)
                 nivel_actual += 1
                 player = player3
         if nivel_actual == 3:
-            niveles(player, bloques3, enemigos3, trampas3, fondo3)
+            niveles(player, bloques3, enemigos3, trampas3, fondo3, trofeo3,moneda)
             if player.gano:
                 puntaje = cronometro.obtener_tiempo_transcurrido()
                 nombre_player = cargar_nombre()

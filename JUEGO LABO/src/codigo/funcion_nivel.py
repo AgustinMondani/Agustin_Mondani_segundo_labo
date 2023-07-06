@@ -9,7 +9,7 @@ from cronometro import Cronometro
 
 cronometro = Cronometro()
 
-def niveles(player, bloques, enemigos, trampas, fondo):
+def niveles(player, bloques, enemigos, trampas, fondo, trofeo, moneda=[]):
     
     cronometro.actualizar()
     fuente = pygame.font.SysFont("Arial", 36)
@@ -27,6 +27,10 @@ def niveles(player, bloques, enemigos, trampas, fondo):
 
     for trampa in trampas:
         trampa.draw()
+    if moneda != []:
+        moneda[0].draw()
+        
+    trofeo.draw()
 
     player.movimiento(bloques)
 

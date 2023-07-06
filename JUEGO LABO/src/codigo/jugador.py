@@ -30,8 +30,11 @@ class Jugador(pygame.sprite.Sprite):
         self.hitbox  = (self.rect.x, self.rect.y, self.rect.width, self.rect.height)
         self.vidas_img = pygame.image.load("src/texturas/vida/vida.png")
         self.image_vidas = pygame.transform.scale(self.vidas_img,(45,45))
+        self.enemigo_img = pygame.image.load("src/texturas/enemigo/3.png")
+        self.image_enemigo = pygame.transform.scale(self.enemigo_img,(35,35))
         self.vidas = 3
         self.gano = False
+        self.disparar = False
 
         self.quieto = cargar_lista_imagenes("src/texturas/personaje/quieto", 1)
         self.caminar = cargar_lista_imagenes("src/texturas/personaje/caminar", 8)
@@ -127,19 +130,11 @@ class Jugador(pygame.sprite.Sprite):
                     PANTALLA.blit(pygame.transform.flip((self.quieto[0]), True, False), (self.rect.x, self.rect.y))
                     #self.image = pygame.transform.flip(self.quieto[0], True, False)
         
-        match self.vidas:
-            case 1:
-                PANTALLA.blit(self.image_vidas, (20 , 20))
-            case 2:
-                PANTALLA.blit(self.image_vidas, (20 , 20))
-                PANTALLA.blit(self.image_vidas, (40 , 20))
-            case 3:
-                PANTALLA.blit(self.image_vidas, (20 , 20))
-                PANTALLA.blit(self.image_vidas, (40 , 20))
-                PANTALLA.blit(self.image_vidas, (60 , 20))
-            case 0:
-                pass
+        for i in range(self.vidas):
+            PANTALLA.blit(self.image_vidas, (50+(i*20), 20))
 
+        for i in range(self.cantidad_enemigos):
+            PANTALLA.blit(self.image_enemigo, ((500+(i*40)), 25))
 
         if(self.hit):
             self.hitbox  = (self.rect.x, self.rect.y, self.rect.width, self.rect.height)
@@ -198,3 +193,4 @@ class Jugador(pygame.sprite.Sprite):
         self.cantidad_enemigos = self.enemigos_iniciales
         self.gano = False
         self.vidas = 3
+        self.disparar = False

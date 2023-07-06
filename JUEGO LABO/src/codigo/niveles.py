@@ -19,7 +19,7 @@ tope_techo = [Bloque(i * tamaño_bloque, 0 - tamaño_bloque, tamaño_bloque, tip
 
 player1 = Jugador(50, 600, 2)
 
-trofeo = [Trofeo(1000, 100, player1)]
+trofeo1 = Trofeo(1000, 100, player1)
 piso = [Bloque(i * tamaño_bloque, HEIGHT - tamaño_bloque, tamaño_bloque, tipo_bloque1)
             for i in range(-WIDHT// tamaño_bloque, (WIDHT * 2) // tamaño_bloque)]
 
@@ -45,7 +45,7 @@ trampas1 = [Trampa(15 * tamaño_bloque, HEIGHT - tamaño_bloque * 2 - alto_tramp
 enemigos1 = [Enemy(300, HEIGHT - tamaño_bloque - alto_enemigo, 1, bloques_sueltos1, player1),
                 Enemy(4 * tamaño_bloque, HEIGHT - tamaño_bloque * 8 - alto_enemigo, 1, bloques_sueltos1, player1)]
 plataforma_movil1 = [Plataforma(650, 400, 48 , 5, 0, player1),Plataforma(602, 400, 48 , 5, 0, player1)]
-bloques1 = [*piso, *plataforma_uno, *plataforma_movil1, *bloques_sueltos1, *plataforma_dos1, *plataforma_tres1, *trofeo, *tope_techo]#,*cronometro1]
+bloques1 = [*piso, *plataforma_uno, *plataforma_movil1, *bloques_sueltos1, *plataforma_dos1, *plataforma_tres1, *tope_techo]#,*cronometro1]
 
 ####  NIVEL 2  ##################################################################################################################################
 
@@ -56,8 +56,7 @@ fondo2 = pygame.transform.scale(image2,(WIDHT,HEIGHT))
 tamaño_bloque  = 48 #tamaño del bloque
 tipo_bloque2 = 64 #los tipos de bloques2 son 0 64 128
 
-
-trofeo2 = [Trofeo(2, 100, player2)]
+trofeo2 = Trofeo(2, 100, player2)
 piso2 = [Bloque(i * tamaño_bloque, HEIGHT - tamaño_bloque, tamaño_bloque, tipo_bloque2)
             for i in range(3)]
 
@@ -90,7 +89,7 @@ plataforma_movil2 = [Plataforma(300, 600, 48 , 5, 0, player2),
                      Plataforma(434, 600, 48 , 5, 0, player2),
                      Plataforma(600, 325, 48 , 5, 0, player2),
                      Plataforma(648, 435, 48 , 5, 0, player2)]
-bloques2 = [*piso2, *plataforma_uno2, *plataforma_movil2, *bloques_sueltos2, *plataforma_dos2, *plataforma_tres2, *trofeo2, *tope_techo]
+bloques2 = [*piso2, *plataforma_uno2, *plataforma_movil2, *bloques_sueltos2, *plataforma_dos2, *plataforma_tres2, *tope_techo]
 
 
 ###### NIVEL 3 #################################################################################################################################
@@ -103,8 +102,9 @@ tamaño_bloque  = 48 #tamaño del bloque
 tipo_bloque3 = 0 #los tipos de bloques2 son 0 64 128
 
 
-trofeo3 = [Trofeo(1150, 400, player3)]
+trofeo3 = Trofeo(1150, 400, player3)
 
+moneda = [Moneda(tamaño_bloque * 2, HEIGHT - (tamaño_bloque * 5), player3)]
 
 piso3 = [Bloque((11 + i) * tamaño_bloque, HEIGHT - tamaño_bloque, tamaño_bloque, tipo_bloque3)
             for i in range(3)]
@@ -147,5 +147,5 @@ columna3 = [Bloque((WIDHT - (5) * tamaño_bloque),(HEIGHT - tamaño_bloque * (6 
                 for i in range(5)]
 
 bloques3 = [*piso3, *plataforma_uno3, *plataforma_movil3, *bloques_sueltos3, *plataforma_dos3, 
-            *plataforma_tres3, *trofeo3, *tope_techo, * plataforma_superior, *plataforma_extra3, *columna3]
+            *plataforma_tres3, *tope_techo, * plataforma_superior, *plataforma_extra3, *columna3]
 
